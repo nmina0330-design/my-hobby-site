@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>未来市 公式ホームページ</title>
+  <style>
+    /* ===== リセット & ベース ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Hiragino Sans", "Meiryo", sans-serif;
+      background-color: #f9fbfd;
+      color: #1e2a3a;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: #1a7fc4;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== ヘッダー ===== */
+    header {
+      background-color: #ffffff;
+      border-bottom: 3px solid #1a7fc4;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .header-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a7fc4;
+      letter-spacing: 2px;
+    }
+    .logo span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5cb85c;
+      margin-left: 8px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: #1e2a3a;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #1a7fc4;
+      text-decoration: none;
+    }
+    .header-utils {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .header-utils input {
+      padding: 4px 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 13px;
+      width: 140px;
+    }
+
+    /* ===== 緊急お知らせ ===== */
+    .emergency {
+      background-color: #fceaea;
+      border-left: 6px solid #d9534f;
+      padding: 12px 20px;
+      margin: 18px 0 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #a94442;
+    }
+    .emergency a {
+      color: #a94442;
+      text-decoration: underline;
+    }
+
+    /* ===== メインビジュアル（スライダー風） ===== */
+    .main-visual {
+      background: linear-gradient(135deg, #1a7fc4 0%, #3aa3e0 100%);
+      border-radius: 12px;
+      padding: 50px 40px;
+      margin: 16px 0 28px;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 200px;
+    }
+    .main-visual h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .main-visual p {
+      font-size: 18px;
+      opacity: 0.95;
+    }
+    .main-visual .badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 14px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* ===== よく使われるメニュー（アイコン風） ===== */
+    .quick-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 24px 0 30px;
+    }
+    .quick-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transition: 0.2s;
+      font-weight: 500;
+      border: 1px solid #eef3f7;
+      font-size: 14px;
+    }
+    .quick-item:hover {
+      box-shadow: 0 6px 16px rgba(26, 127, 196, 0.15);
+      transform: translateY(-2px);
+      border-color: #1a7fc4;
+    }
+    .quick-item .icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ===== 2カラム（トピックス＋イベント） ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+      margin: 24px 0 32px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      border-bottom: 3px solid #1a7fc4;
+      padding-bottom: 6px;
+      margin-bottom: 18px;
+      color: #1a2a3a;
+    }
+
+    /* トピックス（3列） */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e8edf2;
+    }
+    .topic-card .new {
+      background: #f0ad4e;
+      color: #fff;
+      font-size: 11px;
+      padding: 1px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .topic-card h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .topic-card p {
+      font-size: 14px;
+      color: #4a5a6a;
+    }
+
+    /* イベントリスト */
+    .event-list li {
+      list-style: none;
+      padding: 12px 0;
+      border-bottom: 1px dashed #dce3ea;
+      font-size: 14px;
+    }
+    .event-list li:last-child {
+      border-bottom: none;
+    }
+    .event-date {
+      display: inline-block;
+      background: #5cb85c;
+      color: #fff;
+      font-size: 12px;
+      padding: 0 10px;
+      border-radius: 20px;
+      margin-right: 8px;
+      font-weight: 600;
+    }
+
+    /* ===== ピックアップバナー ===== */
+    .pickup {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 28px 0 30px;
+    }
+    .pickup-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 12px;
+      text-align: center;
+      border: 1px solid #e8edf2;
+      font-weight: 600;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+    .pickup-item:hover {
+      background: #1a7fc4;
+      color: #fff;
+      border-color: #1a7fc4;
+    }
+    .pickup-item:hover a {
+      color: #fff;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #1e2a3a;
+      color: #d0d9e4;
+      padding: 36px 0 24px;
+      margin-top: 20px;
+      border-radius: 12px 12px 0 0;
+    }
+    footer a {
+      color: #b0c8dd;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+    }
+    .footer-grid h4 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .footer-grid li {
+      list-style: none;
+      font-size: 14px;
+      line-height: 2;
+    }
+    .footer-bottom {
+      border-top: 1px solid #3a4a5a;
+      margin-top: 24px;
+      padding-top: 18px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 900px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .topic-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pickup {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .nav-links {
+        gap: 10px;
+        font-size: 14px;
+        flex-wrap: wrap;
+      }
+      .header-utils {
+        flex-wrap: wrap;
+      }
+      .header-utils input {
+        width: 100%;
+      }
+      .main-visual {
+        padding: 30px 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .main-visual h1 {
+        font-size: 24px;
+      }
+      .quick-menu {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+      .pickup {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      🌱 未来市 <span>公式サイト</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#">くらし</a>
+      <a href="#">子育て・教育</a>
+      <a href="#">観光・イベント</a>
+      <a href="#">事業者向け</a>
+      <a href="#">市政情報</a>
+    </nav>
+    <div class="header-utils">
+      <input type="text" placeholder="検索..." />
+      <a href="#">文字サイズ</a>
+      <a href="#">多言語</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== 緊急お知らせ ===== -->
+  <div class="emergency">
+    ⚠️ 【令和6年7月1日 9:00更新】熱中症警戒アラート発令中。こまめな水分補給を。
+    <a href="#">→ 防災ページへ</a>
+  </div>
+
+  <!-- ===== メインビジュアル ===== -->
+  <div class="main-visual">
+    <div>
+      <h1>未来は、ここから始まる。</h1>
+      <p>自然とテクノロジーが調和するスマートシティ</p>
+    </div>
+    <div class="badge">📅 未来フェス 2026.11.3</div>
+  </div>
+
+  <!-- ===== よく使われるメニュー ===== -->
+  <div class="quick-menu">
+    <div class="quick-item"><span class="icon">📄</span>住民票・転入転出</div>
+    <div class="quick-item"><span class="icon">💰</span>税金・保険</div>
+    <div class="quick-item"><span class="icon">🗑️</span>ごみ・リサイクル</div>
+    <div class="quick-item"><span class="icon">👶</span>子育て支援</div>
+    <div class="quick-item"><span class="icon">📆</span>イベントカレンダー</div>
+    <div class="quick-item"><span class="icon">🏛️</span>施設予約</div>
+    <div class="quick-item"><span class="icon">🛡️</span>防災・ハザードマップ</div>
+    <div class="quick-item"><span class="icon">💬</span>相談窓口</div>
+  </div>
+
+  <!-- ===== 2カラム：トピックス ＋ イベント ===== -->
+  <div class="two-col">
+    <!-- 左：トピックス -->
+    <div>
+      <div class="section-title">📌 トピックス</div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <span class="new">NEW</span>
+          <h4>「未来市デジタル窓口」スタート！</h4>
+          <p>オンラインで24時間手続き可能に</p>
+        </div>
+        <div class="topic-card">
+          <span class="new">NEW</span>
+          <h4>子育て世帯向け 家賃補助拡充</h4>
+          <p>7月より対象世帯を拡大</p>
+        </div>
+        <div class="topic-card">
+          <h4>AI農業実証実験 収穫量20％アップ</h4>
+          <p>地元企業との協業プロジェクト</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：イベント・お知らせ -->
+    <div>
+      <div class="section-title">📅 今月のイベント</div>
+      <ul class="event-list">
+        <li><span class="event-date">7/10</span> 夏休み親子工作教室</li>
+        <li><span class="event-date">7/15</span> 未来市健康ウォーキング</li>
+        <li><span class="event-date">7/22</span> 市民向け防災訓練</li>
+        <li><span class="event-date">7/28</span> 星空観察会（科学館）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== ピックアップバナー ===== -->
+  <div class="pickup">
+    <div class="pickup-item"><a href="#">🏡 移住・定住サポート</a></div>
+    <div class="pickup-item"><a href="#">🎁 ふるさと納税</a></div>
+    <div class="pickup-item"><a href="#">💬 LINE公式アカウント</a></div>
+    <div class="pickup-item"><a href="#">📢 パブリックコメント</a></div>
+  </div>
+
+</div>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>🏛️ 未来市役所</h4>
+        <p>〒000-0000 未来市中央1-1-1</p>
+        <p>TEL: 0120-xxx-xxx（代表）</p>
+        <p>受付時間 8:30～17:15（土日祝休）</p>
+        <p><a href="#">アクセスMAP</a></p>
+      </div>
+      <div>
+        <h4>リンク</h4>
+        <ul>
+          <li><a href="#">サイトポリシー</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">アクセシビリティ</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>SNS</h4>
+        <ul>
+          <li><a href="#">X（旧Twitter）</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 未来市 All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
